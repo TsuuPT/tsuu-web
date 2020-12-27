@@ -79,6 +79,7 @@ dist
 
 # IDE / Editor
 .idea
+*.iml
 
 # Service worker
 sw.*
@@ -88,8 +89,3 @@ sw.*
 
 # Vim swap files
 *.swp
-
-
-# IDE
-.idea/
-*.iml
