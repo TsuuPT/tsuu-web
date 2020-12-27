@@ -1,66 +1,90 @@
 <template>
-	<div class="container">
-		<div>
-			<Logo />
+	<div class="content">
+		<Header>
+			<p>SLOT</p>
+		</Header>
+
+		<main>
 			<h1 class="title">
 				tsuu-web
 			</h1>
-			<div class="links">
-				<a
-					href="https://nuxtjs.org/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="button--green"
-				>
-					Documentation
-				</a>
-				<a
-					href="https://github.com/nuxt/nuxt.js"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="button--grey"
-				>
-					GitHub
-				</a>
+			<p>Lorem ipsum.</p>
+
+			<button @click="expand">EXPAND</button>
+			<div v-if="expanded">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra odio nec sem accumsan
+				   commodo. Ut sodales ultricies auctor. Duis ultrices nisl non erat pulvinar, nec tristique orci
+				   blandit. Pellentesque vel nibh vel enim mollis tincidunt. In semper dapibus augue vel aliquet. Morbi
+				   eleifend nunc viverra ante fringilla, ut venenatis est efficitur. Etiam in neque molestie, porta
+				   lacus mattis, tincidunt tortor.
+				</p>
+				<p>
+					Proin in urna a nunc rutrum accumsan. Vivamus sodales sapien sed euismod commodo. Nulla lobortis
+					tortor a sapien luctus euismod. Orci varius natoque penatibus et magnis dis parturient montes,
+					nascetur ridiculus mus. Nam efficitur nibh nisi, vitae accumsan purus pretium a. Donec quis ipsum
+					imperdiet, pulvinar eros eu, porttitor tortor. Pellentesque tincidunt nisi et eros sagittis, ut
+					euismod augue tristique. Etiam lacus risus, finibus eget cursus in, ornare a augue. Nullam non
+					faucibus sem. In luctus sagittis tristique. Nam efficitur nibh quis lorem tempor egestas. Nam a elit
+					sed mi aliquet dapibus. Pellentesque eget purus eros. Sed eu auctor eros, eget bibendum tortor. Ut
+					consequat nisi eu mi ultrices luctus. Vivamus eleifend dolor a lectus vestibulum suscipit.
+				</p>
+				<p>
+					Sed interdum massa eu dictum congue. Nullam ut pharetra ante. Aenean posuere massa sit amet
+					ultricies
+					aliquet. Phasellus libero diam, luctus at eleifend auctor, volutpat sit amet arcu. Sed gravida ex
+					vel
+					nulla tincidunt, sed maximus sem luctus. Mauris pellentesque urna mollis vehicula semper. Maecenas
+					varius massa sit amet lorem eleifend sagittis. Aenean augue quam, porta quis lectus ac, aliquet
+					varius leo. Nam porta ante felis, at lacinia ligula tempor non. Proin eleifend est eu ipsum pharetra
+					commodo. Nulla quis metus nec orci dapibus hendrerit. Cras facilisis vel enim eget condimentum. Nunc
+					varius purus nec dolor pulvinar volutpat. Cras a nunc pellentesque, tincidunt eros id, finibus
+					velit.
+					Nam vitae hendrerit mauris, in placerat metus. Curabitur dictum ornare felis in interdum.
+				</p>
 			</div>
-		</div>
+		</main>
+
+		<Footer />
 	</div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Header from "~/components/Header.vue";
+import Footer from "~/components/Footer.vue";
+import {mdiAccountOutline, mdiBellOutline, mdiDotsGrid, mdiMagnify} from "@mdi/js";
 
-export default Vue.extend({})
+export default {
+	components: { Header, Footer },
+	data: () => ({
+		title: 'Novidades',
+		isAdmin: true,
+		notificationsOpened: false,
+
+		expanded: false,
+
+		// icons
+		iconSearch: mdiMagnify,
+		iconNotifications: mdiBellOutline,
+		iconDashboard: mdiDotsGrid,
+		iconProfile: mdiAccountOutline,
+	}),
+	methods: {
+		expand() {
+			this.expanded = !this.expanded;
+		}
+	},
+}
 </script>
 
 <style lang="scss">
-.container {
-	margin: 0 auto;
-	min-height: 100vh;
+.content {
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-}
+	flex-direction: column;
+	min-height: 100vh;
 
-.title {
-	font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-	display: block;
-	font-weight: 300;
-	font-size: 100px;
-	color: #35495e;
-	letter-spacing: 1px;
-}
-
-.subtitle {
-	font-weight: 300;
-	font-size: 42px;
-	color: #526488;
-	word-spacing: 5px;
-	padding-bottom: 15px;
-}
-
-.links {
-	padding-top: 15px;
+	> main {
+		flex: 1 1 auto;
+		padding: 1em 2em;
+	}
 }
 </style>

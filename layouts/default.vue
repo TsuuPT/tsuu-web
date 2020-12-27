@@ -1,8 +1,22 @@
 <template>
 	<div>
-		<Nuxt />
+		<Navbar />
+		<div class="wrapper">
+			<Nuxt />
+		</div>
 	</div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import Navbar from "~/components/Navbar.vue";
+
+export default Vue.extend({
+	components: {
+		Navbar
+	}
+})
+</script>
 
 <style lang="scss">
 html {
@@ -14,6 +28,11 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	box-sizing: border-box;
+
+	// https://aykevl.nl/2014/09/fix-jumping-scrollbar
+	overflow-y: auto;
+	width:100vw;
+	overflow-x:hidden;
 }
 
 *,
@@ -23,32 +42,9 @@ html {
 	margin: 0;
 }
 
-.button--green {
-	display: inline-block;
-	border-radius: 4px;
-	border: 1px solid #3b8070;
-	color: #3b8070;
-	text-decoration: none;
-	padding: 10px 30px;
-
-	&:hover {
-		color: #fff;
-		background-color: #3b8070;
-	}
+.wrapper {
+	margin: 0 0 0 4em; // TODO: use nav-size variable
+	padding: 0;
 }
 
-.button--grey {
-	display: inline-block;
-	border-radius: 4px;
-	border: 1px solid #35495e;
-	color: #35495e;
-	text-decoration: none;
-	padding: 10px 30px;
-	margin-left: 15px;
-
-	&:hover {
-		color: #fff;
-		background-color: #35495e;
-	}
-}
 </style>
