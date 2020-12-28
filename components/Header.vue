@@ -24,7 +24,7 @@
 			</NuxtLink>
 		</div>
 
-		<h1 class="title">{{ title }}</h1>
+		<h1 class="title" v-if="title !== undefined">{{ title }}</h1>
 
 		<slot></slot>
 	</header>
@@ -34,8 +34,8 @@
 import { mdiBellOutline, mdiDotsGrid, mdiAccountOutline, mdiMagnify } from '@mdi/js'
 
 export default {
+	props: ['title'],
 	data: () => ({
-		title: 'Novidades',
 		isAdmin: true,
 		notificationsOpened: false,
 
@@ -92,6 +92,8 @@ header {
 		color: #35495e;
 		letter-spacing: 1px;
 		margin-top: 0.5em;
+
+		height: 4rem;
 	}
 
 	.subtitle {

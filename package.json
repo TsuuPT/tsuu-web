@@ -12,19 +12,25 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"@mdi/js": "^5.8.55",
 		"@nuxt/typescript-runtime": "^2.0.0",
+		"@nuxtjs/apollo": "^4.0.1-rc.5",
 		"@nuxtjs/pwa": "^3.0.2",
+		"@nuxtjs/vuetify": "^1.11.2",
 		"core-js": "^3.6.5",
-		"nuxt": "^2.14.6"
+		"graphql-tag": "^2.11.0",
+		"nuxt": "^2.14.6",
+		"vue": "2.6.12",
+		"vue-server-renderer": "2.6.12",
+		"vue-template-compiler": "2.6.12",
+		"vuex": "^3.6.0"
 	},
 	"devDependencies": {
-		"@mdi/js": "^5.8.55",
 		"@nuxt/types": "^2.14.6",
 		"@nuxt/typescript-build": "^2.0.3",
 		"@nuxtjs/eslint-config": "^3.1.0",
 		"@nuxtjs/eslint-config-typescript": "^3.0.0",
 		"@nuxtjs/eslint-module": "^2.0.0",
-		"@nuxtjs/vuetify": "^1.11.2",
 		"@vue/test-utils": "^1.1.0",
 		"babel-core": "7.0.0-bridge.0",
 		"babel-eslint": "^10.1.0",

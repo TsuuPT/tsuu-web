@@ -34,10 +34,18 @@ export default {
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
 	modules: [
-		// https://go.nuxtjs.dev/pwa
-		'@nuxtjs/pwa'
+		'@nuxtjs/pwa', // https://go.nuxtjs.dev/pwa
+		'@nuxtjs/apollo', // https://github.com/nuxt-community/apollo-module
 	],
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
-	build: {}
+	build: {},
+
+	apollo: {
+		clientConfigs: {
+			default: {
+				httpEndpoint: 'http://localhost:12010/api/graphql', // TODO: load from the environment file
+			}
+		}
+	}
 }

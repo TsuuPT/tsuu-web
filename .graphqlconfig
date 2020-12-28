@@ -1,0 +1,15 @@
+{
+  "name": "Tsuu GraphQL Schema",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Tsuu GraphQL | LOCAL": {
+        "url": "http://localhost:12010/api/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": false
+      }
+    }
+  }
+}

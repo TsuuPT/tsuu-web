@@ -1,6 +1,6 @@
 <template>
 	<div class="content">
-		<Header>
+		<Header title="Novidades">
 			<p>SLOT</p>
 		</Header>
 
@@ -49,9 +49,8 @@
 </template>
 
 <script lang="ts">
-import Header from "~/components/Header.vue";
-import Footer from "~/components/Footer.vue";
-import {mdiAccountOutline, mdiBellOutline, mdiDotsGrid, mdiMagnify} from "@mdi/js";
+import Header from '~/components/Header.vue';
+import Footer from '~/components/Footer.vue';
 
 export default {
 	components: { Header, Footer },
@@ -61,12 +60,6 @@ export default {
 		notificationsOpened: false,
 
 		expanded: false,
-
-		// icons
-		iconSearch: mdiMagnify,
-		iconNotifications: mdiBellOutline,
-		iconDashboard: mdiDotsGrid,
-		iconProfile: mdiAccountOutline,
 	}),
 	methods: {
 		expand() {
@@ -77,6 +70,7 @@ export default {
 </script>
 
 <style lang="scss">
+// default template - don't modify
 .content {
 	display: flex;
 	flex-direction: column;

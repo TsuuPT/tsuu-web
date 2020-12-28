@@ -1,0 +1,19 @@
+query Fansubs {
+	fansubs {
+		id
+		slug
+		name
+		media {
+			icon {
+				small
+				medium
+				large
+			}
+			banner {
+				small
+				medium
+				large
+			}
+		}
+	}
+}

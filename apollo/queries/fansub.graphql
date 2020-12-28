@@ -1,0 +1,34 @@
+query Fansub($slug: String!) {
+	fansub(slug: $slug) {
+		id
+		slug
+		name
+		links {
+			link
+			type
+		}
+		members {
+			name
+			role
+			contact
+			contactType
+		}
+		releases {
+			id
+			name
+			timestamp
+			media {
+				id
+				title {
+					default
+				}
+				type
+				cover {
+					small
+					medium
+					large
+				}
+			}
+		}
+	}
+}
