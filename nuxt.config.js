@@ -50,7 +50,7 @@ export default {
 	apollo: {
 		clientConfigs: {
 			default: {
-				httpEndpoint: process.env.NODE_ENV === 'production' ? 'https://tsuu.sandrohc.net/api' : 'http://localhost:12010/api/graphql'
+				httpEndpoint: process.env.NODE_ENV === 'production' ? 'https://tsuu.sandrohc.net/api/graphql' : 'http://localhost:12010/api/graphql'
 			}
 		}
 	}
