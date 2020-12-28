@@ -10,13 +10,16 @@
 			</h1>
 			<p>Lorem ipsum.</p>
 
-			<button @click="expand">EXPAND</button>
+			<button @click="expand">
+				EXPAND
+			</button>
 			<div v-if="expanded">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra odio nec sem accumsan
-				   commodo. Ut sodales ultricies auctor. Duis ultrices nisl non erat pulvinar, nec tristique orci
-				   blandit. Pellentesque vel nibh vel enim mollis tincidunt. In semper dapibus augue vel aliquet. Morbi
-				   eleifend nunc viverra ante fringilla, ut venenatis est efficitur. Etiam in neque molestie, porta
-				   lacus mattis, tincidunt tortor.
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra odio nec sem accumsan
+					commodo. Ut sodales ultricies auctor. Duis ultrices nisl non erat pulvinar, nec tristique orci
+					blandit. Pellentesque vel nibh vel enim mollis tincidunt. In semper dapibus augue vel aliquet. Morbi
+					eleifend nunc viverra ante fringilla, ut venenatis est efficitur. Etiam in neque molestie, porta
+					lacus mattis, tincidunt tortor.
 				</p>
 				<p>
 					Proin in urna a nunc rutrum accumsan. Vivamus sodales sapien sed euismod commodo. Nulla lobortis
@@ -49,24 +52,22 @@
 </template>
 
 <script lang="ts">
-import Header from '~/components/Header.vue';
-import Footer from '~/components/Footer.vue';
+import Vue from 'vue'
 
-export default {
+import Header from '~/components/Header.vue'
+import Footer from '~/components/Footer.vue'
+
+export default Vue.extend({
 	components: { Header, Footer },
 	data: () => ({
-		title: 'Novidades',
-		isAdmin: true,
-		notificationsOpened: false,
-
-		expanded: false,
+		expanded: false
 	}),
 	methods: {
-		expand() {
-			this.expanded = !this.expanded;
+		expand () {
+			this.expanded = !this.expanded
 		}
-	},
-}
+	}
+})
 </script>
 
 <style lang="scss">

@@ -9,7 +9,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Navbar from "~/components/Navbar.vue";
+
+import Navbar from '~/components/Navbar.vue'
 
 export default Vue.extend({
 	components: {
@@ -31,8 +32,8 @@ html {
 
 	// https://aykevl.nl/2014/09/fix-jumping-scrollbar
 	overflow-y: auto;
-	width:100vw;
-	overflow-x:hidden;
+	width: 100vw;
+	overflow-x: hidden;
 }
 
 *,

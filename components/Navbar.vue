@@ -1,5 +1,5 @@
 <template>
-	<nav v-bind:class="{ open: !isClosed }">
+	<nav :class="{ open: !isClosed }">
 		<span>Tsu</span>
 
 		<!-- Home -->
@@ -14,7 +14,7 @@
 			<div class="name">Fansubs</div>
 		</NuxtLink>
 
-		<span class="spacer"></span>
+		<span class="spacer" />
 
 		<!-- Expand sidebar -->
 		<a href="#" @click="toggle">
@@ -25,9 +25,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { mdiHome, mdiFan, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
 
-export default {
+export default Vue.extend({
 	data: () => ({
 		isClosed: true,
 
@@ -35,15 +36,14 @@ export default {
 		iconHome: mdiHome,
 		iconFansubs: mdiFan,
 		iconOpen: mdiChevronRight,
-		iconClose: mdiChevronLeft,
+		iconClose: mdiChevronLeft
 	}),
 	methods: {
-		toggle() {
-			console.log('TOGGLE');
-			this.isClosed = !this.isClosed;
-		},
-	},
-}
+		toggle () {
+			this.isClosed = !this.isClosed
+		}
+	}
+})
 </script>
 
 <style lang="scss">
@@ -77,7 +77,6 @@ nav {
 			background-color: #526488;
 		}
 	}
-
 
 	.name {
 		display: none;

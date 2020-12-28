@@ -23,12 +23,14 @@
 </template>
 
 <script lang="ts">
-import Header from "~/components/Header.vue";
-import Footer from "~/components/Footer.vue";
+import Vue from 'vue'
 
-import queryFansubs from '~/apollo/queries/fansubs.graphql';
+import Header from '~/components/Header.vue'
+import Footer from '~/components/Footer.vue'
 
-export default {
+import queryFansubs from '~/apollo/queries/fansubs.graphql'
+
+export default Vue.extend({
 	components: { Header, Footer },
 	apollo: {
 		fansubs: {
@@ -36,23 +38,23 @@ export default {
 			query: queryFansubs
 		}
 	},
-	head: {
-		title: 'Fansubs'
-	},
 	data: () => ({
-		alphabet: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','#'],
-		letter: '',
+		alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'],
+		letter: ''
 	}),
-	methods: {
-	},
-	created() {
-		this.letter = decodeURIComponent(this.$route.params.letter?.toUpperCase());
+	created () {
+		this.letter = decodeURIComponent(this.$route.params.letter?.toUpperCase())
 
-		if (!this.letter || this.alphabet.indexOf(this.letter) < 0) {
-			this.letter = this.alphabet[0];
+		if (!this.letter || this.alphabet.includes(this.letter)) {
+			this.letter = this.alphabet[0]
 		}
 	},
-}
+	methods: {
+	},
+	head: {
+		title: 'Fansubs'
+	}
+})
 </script>
 
 <style lang="scss">
@@ -78,7 +80,6 @@ export default {
 		}
 	}
 }
-
 
 // default template - don't modify
 .content {

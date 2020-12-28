@@ -11,7 +11,7 @@ module.exports = {
 	plugins: [],
 	// add your custom rules here
 	rules: {
-		quotes: ['error', 'single'],
+		quotes: ['warn', 'single'],
 		indent: ['error', 'tab'],
 		'vue/html-indent': ['error', 'tab'],
 		'no-tabs': ['error', { allowIndentationTabs: true }]

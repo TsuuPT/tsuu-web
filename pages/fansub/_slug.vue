@@ -1,12 +1,15 @@
 <template>
 	<div class="content">
 		<Header :title="fansub ? fansub.name : ''" />
-<!--		<Header :title="'a'" />-->
 
 		<main>
 			<div v-if="fansub">
-				<h1 class="title">Equipa</h1>
-				<p>{{ fansub.members }}</p>
+				<h1 class="title">
+					Equipa
+				</h1>
+				<p>
+					{{ fansub.members }}
+				</p>
 			</div>
 		</main>
 
@@ -15,11 +18,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Header from '~/components/Header.vue';
-import Footer from '~/components/Footer.vue';
+import Vue from 'vue'
 
-import queryFansub from '~/apollo/queries/fansub.graphql';
+import Header from '~/components/Header.vue'
+import Footer from '~/components/Footer.vue'
+
+import queryFansub from '~/apollo/queries/fansub.graphql'
+
+interface QueryVariables {
+	slug: string
+}
 
 export default Vue.extend({
 	components: { Header, Footer },
@@ -27,14 +35,9 @@ export default Vue.extend({
 		fansub: {
 			query: queryFansub,
 			prefetch: ({ route }) => ({ slug: route.params.slug }),
-			variables() {
+			variables () {
 				return { slug: this.$route.params.slug }
 			}
-		}
-	},
-	head() {
-		return {
-			title: this.fansub?.name || ''
 		}
 	},
 	data: () => ({
@@ -43,6 +46,11 @@ export default Vue.extend({
 	},
 	methods: {
 	},
+	head (this: any) {
+		return {
+			title: this.fansub?.name || ''
+		}
+	}
 })
 </script>
 

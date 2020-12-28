@@ -6,7 +6,7 @@
 				<v-icon>{{ iconSearch }}</v-icon>
 			</a>
 
-			<span class="spacer"></span>
+			<span class="spacer" />
 
 			<!-- Notifications -->
 			<a href="#" class="action-icon" title="Notifications" @click="toggleNotifications">
@@ -14,7 +14,7 @@
 			</a>
 
 			<!-- Dahsboard -->
-			<NuxtLink to="/dahsboard" class="action-icon" title="Dashboard" v-if="isAdmin">
+			<NuxtLink v-if="isAdmin" to="/dahsboard" class="action-icon" title="Dashboard">
 				<v-icon>{{ iconDashboard }}</v-icon>
 			</NuxtLink>
 
@@ -24,17 +24,25 @@
 			</NuxtLink>
 		</div>
 
-		<h1 class="title" v-if="title !== undefined">{{ title }}</h1>
+		<h1 v-if="title !== undefined" class="title">
+			{{ title }}
+		</h1>
 
-		<slot></slot>
+		<slot />
 	</header>
 </template>
 
 <script>
+import Vue from 'vue'
 import { mdiBellOutline, mdiDotsGrid, mdiAccountOutline, mdiMagnify } from '@mdi/js'
 
-export default {
-	props: ['title'],
+export default Vue.extend({
+	props: {
+		title: {
+			type: String,
+			default: undefined
+		}
+	},
 	data: () => ({
 		isAdmin: true,
 		notificationsOpened: false,
@@ -43,15 +51,14 @@ export default {
 		iconSearch: mdiMagnify,
 		iconNotifications: mdiBellOutline,
 		iconDashboard: mdiDotsGrid,
-		iconProfile: mdiAccountOutline,
+		iconProfile: mdiAccountOutline
 	}),
 	methods: {
-		toggleNotifications() {
-			this.notificationsOpened = !this.notificationsOpened;
+		toggleNotifications () {
+			this.notificationsOpened = !this.notificationsOpened
 		}
-
-	},
-}
+	}
+})
 </script>
 
 <style lang="scss">
