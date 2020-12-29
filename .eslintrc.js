@@ -14,6 +14,7 @@ module.exports = {
 		quotes: ['warn', 'single'],
 		indent: ['error', 'tab'],
 		'vue/html-indent': ['error', 'tab'],
-		'no-tabs': ['error', { allowIndentationTabs: true }]
+		'no-tabs': ['error', { allowIndentationTabs: true }],
+		'no-multi-spaces': ['off']
 	}
 }

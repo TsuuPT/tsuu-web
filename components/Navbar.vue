@@ -2,13 +2,13 @@
 	<nav :class="{ open: !isClosed }">
 		<!-- Home -->
 		<NuxtLink to="/" title="Home">
-			<div class="icon"><Logo class="logo" /></div>
+			<div class="icon icon-primary"><Logo class="icon-primary logo" /></div>
 			<div class="name">Novidades</div>
 		</NuxtLink>
 
 		<!-- Fansubs -->
 		<NuxtLink to="/fansubs" title="Fansubs">
-			<div class="icon"><v-icon dark large>{{ iconFansubs }}</v-icon></div>
+			<div class="icon"><v-icon dark large color="icon-secondary">{{ iconFansubs }}</v-icon></div>
 			<div class="name">Fansubs</div>
 		</NuxtLink>
 
@@ -83,8 +83,13 @@ nav {
 			height: 100%;
 
 			> .logo {
+				color: #fff;
 				width: 55%;
 				height: 100%;
+			}
+
+			.theme--dark.v-icon {
+				color: #ddd;
 			}
 		}
 	}

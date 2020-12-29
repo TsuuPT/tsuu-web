@@ -2,24 +2,24 @@
 	<header :class="{ flush: flush }">
 		<div class="actions">
 			<!-- Search -->
-			<a href="#" class="action-icon" title="Search">
+			<a href="#" class="action action-search" title="Search">
 				<v-icon>{{ iconSearch }}</v-icon>
 			</a>
 
 			<span class="spacer" />
 
 			<!-- Notifications -->
-			<a href="#" class="action-icon" title="Notifications" @click="toggleNotifications">
+			<a href="#" class="action action-notifications" title="Notificações" @click="toggleNotifications">
 				<v-icon>{{ iconNotifications }}</v-icon>
 			</a>
 
 			<!-- Dahsboard -->
-			<NuxtLink v-if="isAdmin" to="/dahsboard" class="action-icon" title="Dashboard">
+			<NuxtLink v-if="isAdmin" to="/dahsboard" class="action action-dashboard" title="Dashboard">
 				<v-icon>{{ iconDashboard }}</v-icon>
 			</NuxtLink>
 
 			<!-- Profile -->
-			<NuxtLink to="/profile" class="action-icon" title="Profile">
+			<NuxtLink to="/profile" class="action action-profile" title="Perfil">
 				<v-icon>{{ iconProfile }}</v-icon>
 			</NuxtLink>
 		</div>
@@ -65,11 +65,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-$actions-height: 3.5em;
+$actions-height: 3em;
 
 header {
 	flex: 0 0 auto;
-	padding: 2em;
+	padding: 1em 1em 2em 2em;
 	background-color: #f2f2f2;
 
 	&.flush {
@@ -81,19 +81,30 @@ header {
 		height: $actions-height;
 
 		> * {
-			height: $actions-height;
 			flex: 0 0 auto;
+			height: $actions-height;
+			margin: 0 0.5em;
+			border-radius: 50%;
 
-			color: #000;
+			&:hover {
+				background: #dddddd;
+			}
 
-			&.action-icon {
+			&.action {
 				text-align: center;
 				width: $actions-height;
 				line-height: $actions-height;
 			}
 
+			&.action-search {
+				margin-left: 0;
+			}
+
 			&.spacer {
 				flex: 1 1 auto;
+				&:hover {
+					background: none;
+				}
 			}
 		}
 	}

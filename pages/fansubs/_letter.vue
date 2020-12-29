@@ -4,18 +4,27 @@
 
 		<main>
 			<div class="alphabet">
-				<NuxtLink v-for="char in alphabet" :key="char" :to="`/fansubs/${encodeURIComponent(char.toLowerCase())}`" :class="{ active: char === letter }">
+				<NuxtLink v-for="char in alphabet" :key="char" :to="`/fansubs/${encodeURIComponent(char.toLowerCase())}`" :class="{ active: char === selected }">
 					{{ char }}
 				</NuxtLink>
 			</div>
 
-			<ul style="margin-top: 2em; font-size: 1.5em">
-				<li v-for="fansub in fansubs" :key="fansub.id">
-					<NuxtLink :to="`/fansub/${fansub.slug}`">
-						{{ fansub.name }}
-					</NuxtLink>
-				</li>
-			</ul>
+			<div class="results">
+				<div v-if="$apollo.queries.fansubs.loading">
+					<v-skeleton-loader class="mx-auto" type="card" />
+					<v-skeleton-loader class="mx-auto" type="card" />
+					<v-skeleton-loader class="mx-auto" type="card" />
+				</div>
+				<div v-else>
+					<ul style="font-size: 1.5em">
+						<li v-for="fansub in fansubs" :key="fansub.id">
+							<NuxtLink :to="`/fansub/${fansub.slug}`">
+								{{ fansub.name }}
+							</NuxtLink>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</main>
 
 		<Footer />
@@ -40,16 +49,21 @@ export default Vue.extend({
 	},
 	data: () => ({
 		alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'],
-		letter: ''
+		selected: ''
 	}),
 	created () {
-		this.letter = decodeURIComponent(this.$route.params.letter?.toUpperCase())
-
-		if (!this.letter || this.alphabet.includes(this.letter)) {
-			this.letter = this.alphabet[0]
-		}
+		this.selected = this.getSelected()
 	},
 	methods: {
+		getSelected (): string {
+			let val = decodeURIComponent(this.$route.params.letter?.toUpperCase())
+
+			if (!val || !this.alphabet.includes(val)) {
+				val = this.alphabet[0]
+			}
+
+			return val
+		}
 	},
 	head: {
 		title: 'Fansubs'
@@ -77,6 +91,19 @@ export default Vue.extend({
 		&.active {
 			color: #000;
 			background-color: #f2f2f2;
+		}
+	}
+}
+
+.results {
+	margin-top: 2em;
+
+	.v-skeleton-loader {
+		width: 33%;
+		display: inline-block;
+
+		.v-skeleton-loader__image {
+			height: 100px;
 		}
 	}
 }

@@ -174,17 +174,17 @@ export default Vue.extend({
 }
 
 // TODO: move to 'equipa' component
-.members.members table {
-	width: auto;
+.members table {
+	width: auto !important;
 }
 
 // TODO: move to 'header tabs' component
-.tabs.v-tabs {
+.v-tabs {
 	margin-top: 1em;
 
-	.v-tabs-bar {
+	> .v-tabs-bar {
 		height: 2.5em;
-		background-color: transparent;
+		background-color: transparent !important;
 	}
 }
 
