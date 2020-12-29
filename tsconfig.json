@@ -27,6 +27,7 @@
 			"@types/node",
 			"@types/graphql",
 			"@nuxt/types",
+			"@nuxtjs/vuetify",
 			"vue-apollo/types"
 		]
 	},

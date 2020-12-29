@@ -1,5 +1,7 @@
 module.exports = {
+	setupFilesAfterEnv: ['./test/jest.setup.js'],
 	moduleNameMapper: {
+		'^~/(.*\\.svg)\\?inline$': '<rootDir>/$1',
 		'^@/(.*)$': '<rootDir>/$1',
 		'^~/(.*)$': '<rootDir>/$1',
 		'^vue$': 'vue/dist/vue.common.js'
@@ -13,7 +15,8 @@ module.exports = {
 	transform: {
 		'^.+\\.ts$': 'ts-jest',
 		'^.+\\.js$': 'babel-jest',
-		'.*\\.(vue)$': 'vue-jest'
+		'.*\\.vue$': 'vue-jest',
+		'.+\\.svg(\\?inline)?$': 'jest-transform-stub'
 	},
 	collectCoverage: true,
 	collectCoverageFrom: [

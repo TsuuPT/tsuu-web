@@ -30,6 +30,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+
 import { mdiAccountGroupOutline, mdiMovieOpen, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
 import Logo from '~/assets/images/logo.svg?inline'
 

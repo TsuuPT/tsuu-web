@@ -29,14 +29,14 @@ export default {
 	// Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
 	buildModules: [
 		'@nuxt/typescript-build', // https://go.nuxtjs.dev/typescript
-		'@nuxtjs/vuetify' // https://github.com/nuxt-community/vuetify-module
+		'@nuxtjs/vuetify', // https://github.com/nuxt-community/vuetify-module
+		'@nuxtjs/svg' // https://npmjs.com/package/@nuxtjs/svg
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
 	modules: [
 		'@nuxtjs/pwa', // https://go.nuxtjs.dev/pwa
-		'@nuxtjs/apollo', // https://github.com/nuxt-community/apollo-module
-		'@nuxtjs/svg' // https://www.npmjs.com/package/@nuxtjs/svg
+		'@nuxtjs/apollo' // https://github.com/nuxt-community/apollo-module
 	],
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
