@@ -1,17 +1,21 @@
 <template>
 	<nav :class="{ open: !isClosed }">
-		<span>Tsu</span>
-
 		<!-- Home -->
-		<NuxtLink to="/">
-			<div class="icon"><v-icon dark large>{{ iconHome }}</v-icon></div>
+		<NuxtLink to="/" title="Home">
+			<div class="icon"><Logo class="logo" /></div>
 			<div class="name">Novidades</div>
 		</NuxtLink>
 
 		<!-- Fansubs -->
-		<NuxtLink to="/fansubs">
+		<NuxtLink to="/fansubs" title="Fansubs">
 			<div class="icon"><v-icon dark large>{{ iconFansubs }}</v-icon></div>
 			<div class="name">Fansubs</div>
+		</NuxtLink>
+
+		<!-- Media -->
+		<NuxtLink to="/media" title="Media">
+			<div class="icon"><v-icon dark large>{{ iconMedia }}</v-icon></div>
+			<div class="name">Media</div>
 		</NuxtLink>
 
 		<span class="spacer" />
@@ -24,17 +28,19 @@
 	</nav>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
-import { mdiHome, mdiFan, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
+import { mdiAccountGroupOutline, mdiMovieOpen, mdiChevronRight, mdiChevronLeft } from '@mdi/js'
+import Logo from '~/assets/images/logo.svg?inline'
 
 export default Vue.extend({
+	components: { Logo },
 	data: () => ({
 		isClosed: true,
 
 		// icons
-		iconHome: mdiHome,
-		iconFansubs: mdiFan,
+		iconFansubs: mdiAccountGroupOutline,
+		iconMedia: mdiMovieOpen,
 		iconOpen: mdiChevronRight,
 		iconClose: mdiChevronLeft
 	}),
@@ -53,7 +59,7 @@ nav {
 	width: $nav-size;
 	height: 100vh;
 	position: fixed;
-	background-color: #4f4f4f;
+	background-color: #4f4f4f; // TODO: use theme variables - https://vuetifyjs.com/en/features/theme/#theme-generator
 
 	display: flex;
 	flex-direction: column;
@@ -69,6 +75,16 @@ nav {
 
 		&.spacer {
 			flex: 1 1 auto;
+		}
+
+		> .icon {
+			width: 100%;
+			height: 100%;
+
+			> .logo {
+				width: 55%;
+				height: 100%;
+			}
 		}
 	}
 

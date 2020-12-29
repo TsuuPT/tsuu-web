@@ -35,7 +35,8 @@ export default {
 	// Modules (https://go.nuxtjs.dev/config-modules)
 	modules: [
 		'@nuxtjs/pwa', // https://go.nuxtjs.dev/pwa
-		'@nuxtjs/apollo' // https://github.com/nuxt-community/apollo-module
+		'@nuxtjs/apollo', // https://github.com/nuxt-community/apollo-module
+		'@nuxtjs/svg' // https://www.npmjs.com/package/@nuxtjs/svg
 	],
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)

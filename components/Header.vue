@@ -1,5 +1,5 @@
 <template>
-	<header>
+	<header :class="{ flush: flush }">
 		<div class="actions">
 			<!-- Search -->
 			<a href="#" class="action-icon" title="Search">
@@ -32,7 +32,7 @@
 	</header>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import { mdiBellOutline, mdiDotsGrid, mdiAccountOutline, mdiMagnify } from '@mdi/js'
 
@@ -41,6 +41,9 @@ export default Vue.extend({
 		title: {
 			type: String,
 			default: undefined
+		},
+		flush: {
+			type: Boolean
 		}
 	},
 	data: () => ({
@@ -68,6 +71,10 @@ header {
 	flex: 0 0 auto;
 	padding: 2em;
 	background-color: #f2f2f2;
+
+	&.flush {
+		padding-bottom: 0;
+	}
 
 	.actions {
 		display: flex;

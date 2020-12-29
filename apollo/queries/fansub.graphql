@@ -3,6 +3,7 @@ query Fansub($slug: String!) {
 		id
 		slug
 		name
+		description(asHTML: true)
 		links {
 			link
 			type
