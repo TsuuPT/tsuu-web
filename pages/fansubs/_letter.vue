@@ -66,7 +66,7 @@ export default Vue.extend({
 		}
 	},
 	head: {
-		title: 'Fansubs'
+		title: 'Fansubs • Tsuu'
 	}
 })
 </script>

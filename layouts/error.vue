@@ -1,29 +1,52 @@
 <template>
-	<div>
-		<h1 v-if="error.statusCode === 404">
-			Page not found
-		</h1>
-		<h1 v-else>
-			An error occurred
-		</h1>
+	<div class="content">
+		<Header title="Oops!" />
 
-		<NuxtLink v-if="error.statusCode === 404" to="./">
-			Go back
-		</NuxtLink>
-		<NuxtLink v-else to="/">
-			Go to home
-		</NuxtLink>
+		<main>
+			<p>
+				{{ message }}
+			</p>
+
+			<NuxtLink v-if="error.statusCode === 404" to="./">
+				Voltar
+			</NuxtLink>
+			<NuxtLink v-else to="/">
+				Ir para o início
+			</NuxtLink>
+		</main>
+
+		<Footer />
 	</div>
 </template>
 
 <script>
 import Vue from 'vue'
 
+import Header from '~/components/Header.vue'
+import Footer from '~/components/Footer.vue'
+
 export default Vue.extend({
+	components: { Header, Footer },
 	props: ['error'],
-	layout: 'error' // you can set a custom layout for the error page
+	layout: 'error',
+	computed: {
+		message () {
+			return this.error.statusCode === 404 ? 'Oops, não encontrámos esta página' : 'Oops, ocorreu um erro'
+		}
+	}
 })
 </script>
 
 <style lang="scss">
+// default template - don't modify
+.content {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+
+	> main {
+		flex: 1 1 auto;
+		padding: 1em 2em;
+	}
+}
 </style>

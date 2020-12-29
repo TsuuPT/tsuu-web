@@ -1,20 +1,13 @@
 <template>
-	<div class="content">
+	<div class="fansub">
 		<Header :title="fansub ? fansub.name : ''" flush>
 			<div v-if="fansub" class="links">
 				<LinkIcon v-for="item in fansub.links" :key="item.link" :data="item" />
-
-				<LinkIcon :data="{ link: 'sandro123iv@gmail.com', type: 'EMAIL' }" />
-				<LinkIcon :data="{ link: 'https://example.com', type: 'YOUTUBE' }" />
-				<LinkIcon :data="{ link: 'https://example.com', type: 'FACEBOOK' }" />
-				<LinkIcon :data="{ link: 'https://example.com', type: 'TWITTER' }" />
-				<LinkIcon :data="{ link: 'https://example.com', type: 'INSTAGRAM' }" />
-				<LinkIcon :data="{ link: 'https://example.com', type: 'SKYPE' }" />
-				<LinkIcon :data="{ link: 'https://example.com', type: 'UNKNOWN' }" />
 			</div>
 
 			<v-tabs v-model="tab" class="tabs">
 				<v-tab>Sobre Nós</v-tab>
+				<v-tab>Equipa</v-tab>
 				<v-tab>Lançamentos</v-tab>
 				<v-tab>Jobs</v-tab>
 			</v-tabs>
@@ -23,67 +16,37 @@
 		<main>
 			<div v-if="fansub">
 				<v-tabs-items v-model="tab">
+					<!-- Sobre Nós -->
 					<v-tab-item :transition="false" :reverse-transition="false">
-						<v-btn outlined rounded text>
-							Ligar Notificações
-							<v-icon right>
-								mdi-bell-outline
-							</v-icon>
-						</v-btn>
-
-						<v-btn outlined rounded text>
-							Editar
-							<v-icon right>
-								mdi-pencil-outline
-							</v-icon>
-						</v-btn>
-
-						<v-btn outlined rounded text>
-							Revisões
-							<v-icon right>
-								mdi-history
-							</v-icon>
-						</v-btn>
-
-						<div class="description" v-html="fansub.description" />
-
-						<v-divider inset />
-
-						<h1 class="title">
-							Equipa
-						</h1>
-
-						<v-simple-table class="members">
-							<template v-slot:default>
-								<thead>
-									<tr>
-										<th class="text-left">
-											Nome
-										</th>
-										<th class="text-left">
-											Cargo
-										</th>
-										<th class="text-left">
-											Contacto
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr v-for="member in fansub.members" :key="member.name">
-										<td>{{ member.name }}</td>
-										<td>{{ member.role }}</td>
-										<td>{{ member.contact }} {{ member.contactType ? ('/ ' + member.contactType) : '' }}</td>
-									</tr>
-								</tbody>
-							</template>
-						</v-simple-table>
+						<FansubAbout :fansub="fansub" />
 					</v-tab-item>
 
+					<!-- Equipa -->
 					<v-tab-item :transition="false" :reverse-transition="false">
-						LANÇAMENTOS
+						<FansubMembers :fansub="fansub" />
 					</v-tab-item>
 
+					<!-- Lançamentos -->
 					<v-tab-item :transition="false" :reverse-transition="false">
+						<FansubReleases :fansub="fansub" />
+					</v-tab-item>
+
+					<!-- Jobs -->
+					<v-tab-item :transition="false" :reverse-transition="false">
+						<v-btn outlined rounded text>
+							Executar
+							<v-icon right>
+								mdi-play-outline
+							</v-icon>
+						</v-btn>
+
+						<v-btn outlined rounded text>
+							Configurar
+							<v-icon right>
+								mdi-wrench-outline
+							</v-icon>
+						</v-btn>
+
 						<v-timeline align-top dense class="jobs">
 							<v-timeline-item fill-dot icon="mdi-autorenew" color="yellow" small>
 								<v-chip class="white--text ml-0" color="purple" label small>
@@ -116,6 +79,9 @@ import Vue from 'vue'
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 import LinkIcon from '~/components/LinkIcon.vue'
+import FansubAbout from '~/components/FansubAbout.vue'
+import FansubMembers from '~/components/FansubMembers.vue'
+import FansubReleases from '~/components/FansubReleases.vue'
 
 import queryFansub from '~/apollo/queries/fansub.graphql'
 
@@ -124,7 +90,7 @@ interface QueryVariables {
 }
 
 export default Vue.extend({
-	components: { Header, Footer, LinkIcon },
+	components: { Header, Footer, LinkIcon, FansubAbout, FansubMembers, FansubReleases },
 	apollo: {
 		fansub: {
 			query: queryFansub,
@@ -137,13 +103,9 @@ export default Vue.extend({
 	data: () => ({
 		tab: null
 	}),
-	computed: {
-	},
-	methods: {
-	},
 	head (this: any) {
 		return {
-			title: this.fansub?.name || ''
+			title: (this.fansub ? (this.fansub.name + ' • ') : '') + 'Tsuu'
 		}
 	}
 })
@@ -151,7 +113,7 @@ export default Vue.extend({
 
 <style lang="scss">
 // default template - don't modify
-.content {
+.fansub {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -160,22 +122,22 @@ export default Vue.extend({
 		flex: 1 1 auto;
 		padding: 1em 2em;
 	}
+
+	.jobs {
+		.yellow {
+			background-color: #e5e600;
+		}
+		.green {
+			background-color: green;
+		}
+		.red {
+			background-color: #e60000;
+		}
+	}
 }
 
 .links {
 	margin-top: 1em;
-}
-
-.description {
-	position: relative;
-	max-height: 500px;
-	overflow-x: hidden;
-	overflow-y: auto;
-}
-
-// TODO: move to 'equipa' component
-.members table {
-	width: auto !important;
 }
 
 // TODO: move to 'header tabs' component
@@ -188,15 +150,5 @@ export default Vue.extend({
 	}
 }
 
-.jobs {
-	.yellow {
-		background-color: #e5e600;
-	}
-	.green {
-		background-color: green;
-	}
-	.red {
-		background-color: #e60000;
-	}
-}
+
 </style>

@@ -1,0 +1,18 @@
+query FansubEdit($slug: String!) {
+	fansub(slug: $slug) {
+		id
+		slug
+		name
+		description(asHTML: true)
+		links {
+			link
+			type
+		}
+		members {
+			name
+			role
+			contact
+			contactType
+		}
+	}
+}

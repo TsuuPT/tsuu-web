@@ -1,10 +1,10 @@
 <template>
-	<div>
+	<v-app>
 		<Navbar />
 		<div class="wrapper">
 			<Nuxt />
 		</div>
-	</div>
+	</v-app>
 </template>
 
 <script lang="ts">
