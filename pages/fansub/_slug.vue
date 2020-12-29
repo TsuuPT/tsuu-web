@@ -1,7 +1,7 @@
 <template>
 	<div class="content">
 		<Header :title="fansub ? fansub.name : ''" flush>
-			<div class="links" v-if="fansub">
+			<div v-if="fansub" class="links">
 				<LinkIcon v-for="item in fansub.links" :key="item.link" :data="item" />
 
 				<LinkIcon :data="{ link: 'sandro123iv@gmail.com', type: 'EMAIL' }" />
@@ -13,7 +13,7 @@
 				<LinkIcon :data="{ link: 'https://example.com', type: 'UNKNOWN' }" />
 			</div>
 
-			<v-tabs class="tabs" v-model="tab">
+			<v-tabs v-model="tab" class="tabs">
 				<v-tab>Sobre Nós</v-tab>
 				<v-tab>Lançamentos</v-tab>
 				<v-tab>Jobs</v-tab>
@@ -45,10 +45,9 @@
 							</v-icon>
 						</v-btn>
 
-						<div v-html="fansub.description" class="description" />
+						<div class="description" v-html="fansub.description" />
 
 						<v-divider inset />
-
 
 						<h1 class="title">
 							Equipa
@@ -57,27 +56,24 @@
 						<v-simple-table class="members">
 							<template v-slot:default>
 								<thead>
-								<tr>
-									<th class="text-left">
-										Nome
-									</th>
-									<th class="text-left">
-										Cargo
-									</th>
-									<th class="text-left">
-										Contacto
-									</th>
-								</tr>
+									<tr>
+										<th class="text-left">
+											Nome
+										</th>
+										<th class="text-left">
+											Cargo
+										</th>
+										<th class="text-left">
+											Contacto
+										</th>
+									</tr>
 								</thead>
 								<tbody>
-								<tr
-									v-for="member in fansub.members"
-									:key="member.name"
-								>
-									<td>{{ member.name }}</td>
-									<td>{{ member.role }}</td>
-									<td>{{ member.contact }} {{ member.contactType ? ('/ ' + member.contactType) : '' }}</td>
-								</tr>
+									<tr v-for="member in fansub.members" :key="member.name">
+										<td>{{ member.name }}</td>
+										<td>{{ member.role }}</td>
+										<td>{{ member.contact }} {{ member.contactType ? ('/ ' + member.contactType) : '' }}</td>
+									</tr>
 								</tbody>
 							</template>
 						</v-simple-table>
@@ -95,9 +91,15 @@
 								</v-chip>
 								Processing...
 							</v-timeline-item>
-							<v-timeline-item fill-dot icon="mdi-check" color="green" small>#3 3 new entries</v-timeline-item>
-							<v-timeline-item fill-dot icon="mdi-close" color="red" small>#2 </v-timeline-item>
-							<v-timeline-item fill-dot icon="mdi-close" color="red" small>#1</v-timeline-item>
+							<v-timeline-item fill-dot icon="mdi-check" color="green" small>
+								#3 3 new entries
+							</v-timeline-item>
+							<v-timeline-item fill-dot icon="mdi-close" color="red" small>
+								#2
+							</v-timeline-item>
+							<v-timeline-item fill-dot icon="mdi-close" color="red" small>
+								#1
+							</v-timeline-item>
 						</v-timeline>
 					</v-tab-item>
 				</v-tabs-items>
