@@ -37,7 +37,7 @@ import Vue from 'vue'
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 
-import queryFansubs from '~/apollo/queries/fansubs.graphql'
+import queryFansubs from '~/apollo/queries/queryFansubs.graphql'
 
 export default Vue.extend({
 	components: { Header, Footer },

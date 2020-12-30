@@ -163,16 +163,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mdiEarth, mdiAt, mdiFacebook, mdiTwitter, mdiInstagram, mdiDiscord, mdiSkypeBusiness, mdiYoutube } from '@mdi/js'
+import { FansubInput, FansubLink, FansubMember } from '~/types/Fansub'
 
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 import LinkIcon from '~/components/LinkIcon.vue'
 
-import queryFansubEdit from '~/apollo/queries/fansub_edit.graphql'
-
-interface QueryVariables {
-	slug: string
-}
+import queryFansubEdit from '~/apollo/queries/queryFansubEdit.graphql'
+import mutationSaveFansubRevision from '~/apollo/queries/saveFansubRevision.graphql'
 
 export default Vue.extend({
 	components: { Header, Footer, LinkIcon },
@@ -203,6 +201,39 @@ export default Vue.extend({
 	methods: {
 		save (this: any) {
 			this.temp = true
+
+			let fansub: FansubInput
+			let links: FansubLink[] = []
+			let members: FansubMember[] = []
+
+			this.fansub.links.forEach((link: FansubLink) => links.push({
+				link: link.link,
+				type: link.type
+			}))
+
+			this.fansub.members.forEach((member: FansubMember) => members.push({
+				name: member.name,
+				role: member.role,
+				contact: member.contact,
+				contactType: member.contactType
+			}))
+
+			fansub = {
+				id: this.fansub.id,
+				name: this.fansub.name,
+				description: this.fansub.description,
+				links: links,
+				members: members
+			}
+
+			let variables = {
+				revisionId: undefined,
+				fansub: fansub
+			}
+
+			this.$apollo.mutate({ mutation: mutationSaveFansubRevision, variables })
+				.then((data: any) => console.log(data))
+				.catch((reason: any) => console.error(reason))
 		},
 
 		newMember(this: any) {

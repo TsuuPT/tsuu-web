@@ -5,8 +5,8 @@ export interface Fansub {
 	slug: string
 	name: string
 	description: string
-	links: [FansubLink]
-	members: [FansubMember]
+	links: FansubLink[]
+	members: FansubMember[]
 	releases?: [Release]
 }
 
@@ -20,4 +20,12 @@ export interface FansubMember {
 	role: string
 	contact: string
 	contactType: string
+}
+
+export interface FansubInput {
+	id: string
+	name: string
+	description: string
+	links: FansubLink[]
+	members: FansubMember[]
 }

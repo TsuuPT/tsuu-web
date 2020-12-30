@@ -1,6 +1,6 @@
 <template>
-	<div class="fansub">
-		<Header :title="fansub ? fansub.name : ''" flush>
+	<div class="dashboard">
+		<Header :title="Dashboard" flush>
 			<div v-if="fansub" class="links">
 				<LinkIcon v-for="item in fansub.links" :key="item.link" :data="item" />
 			</div>

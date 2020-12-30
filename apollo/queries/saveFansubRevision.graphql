@@ -1,0 +1,5 @@
+mutation saveFansubRevision($revisionId: ID, $fansub: FansubInput!) {
+	saveFansubRevision(revisionId: $revisionId, fansub: $fansub) {
+		id
+	}
+}
