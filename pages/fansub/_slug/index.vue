@@ -95,7 +95,7 @@ export default Vue.extend({
 		fansub: {
 			query: queryFansub,
 			prefetch: ({ route }) => ({ slug: route.params.slug }),
-			variables () {
+			variables() {
 				return { slug: this.$route.params.slug }
 			}
 		}
@@ -103,7 +103,7 @@ export default Vue.extend({
 	data: () => ({
 		tab: null
 	}),
-	head (this: any) {
+	head(this: any) {
 		return {
 			title: (this.fansub ? (this.fansub.name + ' • ') : '') + 'Tsuu'
 		}
@@ -149,6 +149,4 @@ export default Vue.extend({
 		background-color: transparent !important;
 	}
 }
-
-
 </style>

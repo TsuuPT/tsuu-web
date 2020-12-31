@@ -28,14 +28,14 @@ export default Vue.extend({
 		}
 	},
 	computed: {
-		link (this: any): string {
+		link(this: any): string {
 			if (this.data.type === 'EMAIL') {
 				return 'mailto:' + this.data.link
 			}
 
 			return this.data.link
 		},
-		info (this: any): Info {
+		info(this: any): Info {
 			switch (this.data.type) {
 			case 'WEBSITE':
 				return { name: 'Sítio web', icon: mdiEarth }

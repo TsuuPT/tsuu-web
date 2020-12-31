@@ -1,19 +1,19 @@
 <template>
 	<nav :class="{ open: !isClosed }">
 		<!-- Home -->
-		<NuxtLink to="/" title="Home">
+		<NuxtLink to="/" title="Home" :class="{ active: $nuxt.$route.path === '/' }">
 			<div class="icon icon-primary"><Logo class="icon-primary logo" /></div>
 			<div class="name">Novidades</div>
 		</NuxtLink>
 
 		<!-- Fansubs -->
-		<NuxtLink to="/fansubs" title="Fansubs">
+		<NuxtLink to="/fansubs" title="Fansubs" :class="{ active: $nuxt.$route.path.startsWith('/fansub') }">
 			<div class="icon"><v-icon dark large color="icon-secondary">{{ iconFansubs }}</v-icon></div>
 			<div class="name">Fansubs</div>
 		</NuxtLink>
 
 		<!-- Media -->
-		<NuxtLink to="/media" title="Media">
+		<NuxtLink to="/media" title="Media" :class="{ active: $nuxt.$route.path.startsWith('/media') }">
 			<div class="icon"><v-icon dark large>{{ iconMedia }}</v-icon></div>
 			<div class="name">Media</div>
 		</NuxtLink>
@@ -46,7 +46,7 @@ export default Vue.extend({
 		iconClose: mdiChevronLeft
 	}),
 	methods: {
-		toggle () {
+		toggle() {
 			this.isClosed = !this.isClosed
 		}
 	}
@@ -60,7 +60,8 @@ nav {
 	width: $nav-size;
 	height: 100vh;
 	position: fixed;
-	background-color: #4f4f4f; // TODO: use theme variables - https://vuetifyjs.com/en/features/theme/#theme-generator
+	background-color: #00b377;
+	background-color: var(--v-primary-base);
 
 	display: flex;
 	flex-direction: column;
@@ -89,14 +90,16 @@ nav {
 			}
 
 			.theme--dark.v-icon {
-				color: #ddd;
+				color: #fff;
 			}
 		}
 	}
 
 	> a {
+		&.active,
 		&:hover {
-			background-color: #526488;
+			background-color: #00985e;
+			background-color: var(--v-primary-darken1);
 		}
 	}
 

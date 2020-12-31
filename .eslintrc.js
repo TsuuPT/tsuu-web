@@ -15,6 +15,7 @@ module.exports = {
 		indent: ['error', 'tab'],
 		'vue/html-indent': ['error', 'tab'],
 		'no-tabs': ['error', { allowIndentationTabs: true }],
-		'no-multi-spaces': ['off']
+		'no-multi-spaces': ['off'],
+		'space-before-function-paren': ['error', { named: 'never' }]
 	}
 }

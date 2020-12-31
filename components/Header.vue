@@ -1,30 +1,8 @@
 <template>
 	<header :class="{ flush: flush }">
-		<div class="actions">
-			<!-- Search -->
-			<a href="#" class="action action-search" title="Search">
-				<v-icon>{{ iconSearch }}</v-icon>
-			</a>
+		<HeaderActions />
 
-			<span class="spacer" />
-
-			<!-- Notifications -->
-			<a href="#" class="action action-notifications" title="Notificações" @click="toggleNotifications">
-				<v-icon>{{ iconNotifications }}</v-icon>
-			</a>
-
-			<!-- Dahsboard -->
-			<NuxtLink v-if="isAdmin" to="/dahsboard" class="action action-dashboard" title="Dashboard">
-				<v-icon>{{ iconDashboard }}</v-icon>
-			</NuxtLink>
-
-			<!-- Profile -->
-			<NuxtLink to="/profile" class="action action-profile" title="Perfil">
-				<v-icon>{{ iconProfile }}</v-icon>
-			</NuxtLink>
-		</div>
-
-		<h1 v-if="title !== undefined" class="title">
+		<h1 v-if="title !== undefined" class="header-title">
 			{{ title }}
 		</h1>
 
@@ -36,7 +14,10 @@
 import Vue from 'vue'
 import { mdiBellOutline, mdiDotsGrid, mdiAccountOutline, mdiMagnify } from '@mdi/js'
 
+import HeaderActions from '~/components/HeaderActions.vue'
+
 export default Vue.extend({
+	components: { HeaderActions },
 	props: {
 		title: {
 			type: String,
@@ -57,7 +38,7 @@ export default Vue.extend({
 		iconProfile: mdiAccountOutline
 	}),
 	methods: {
-		toggleNotifications () {
+		toggleNotifications() {
 			this.notificationsOpened = !this.notificationsOpened
 		}
 	}
@@ -71,52 +52,22 @@ header {
 	flex: 0 0 auto;
 	padding: 1em 1em 2em 2em;
 	background-color: #f2f2f2;
+	background-color: var(--v-background-darken1);
 
 	&.flush {
 		padding-bottom: 0;
 	}
 
-	.actions {
-		display: flex;
-		height: $actions-height;
-
-		> * {
-			flex: 0 0 auto;
-			height: $actions-height;
-			margin: 0 0.5em;
-			border-radius: 50%;
-
-			&:hover {
-				background: #dddddd;
-			}
-
-			&.action {
-				text-align: center;
-				width: $actions-height;
-				line-height: $actions-height;
-			}
-
-			&.action-search {
-				margin-left: 0;
-			}
-
-			&.spacer {
-				flex: 1 1 auto;
-				&:hover {
-					background: none;
-				}
-			}
-		}
-	}
-
-	.title {
+	.header-title {
 		font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 		display: block;
 		font-weight: 300;
 		font-size: 3em;
-		color: #35495e;
 		letter-spacing: 1px;
 		margin-top: 0.5em;
+
+		color: #000;
+		color: var(--v-contrast-base);
 
 		height: 4rem;
 	}

@@ -1,0 +1,5 @@
+// Vuetify overrides
+.theme--light.v-tabs-items, .theme--dark.v-tabs-items,
+.theme--light.v-data-table, .theme--dark.v-data-table {
+	background-color: inherit !important;
+}

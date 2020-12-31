@@ -17,6 +17,7 @@ export default Vue.extend({
 footer {
 	flex: 0 0 auto;
 	padding: 2em;
-	background-color: #fcfcfc;
+	background-color: #f2f2f2;
+	background-color: var(--v-background-darken1);
 }
 </style>

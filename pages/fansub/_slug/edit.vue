@@ -63,7 +63,7 @@
 											<v-text-field v-model="member.role" dense />
 										</td>
 										<td>
-											<v-text-field v-model="member.contact" dense :clearable="true" @click:clear="clearMemberContact(index)" class="d-inline-block" />
+											<v-text-field v-model="member.contact" dense :clearable="true" class="d-inline-block" @click:clear="clearMemberContact(index)" />
 											<span v-if="member.contact">
 												<v-select v-model="member.contactType" :items="contactTypes" dense item-text="name" item-value="key" class="d-inline-block" />
 											</span>
@@ -109,40 +109,40 @@
 						<v-simple-table class="members">
 							<template v-slot:default>
 								<thead>
-								<tr>
-									<th class="text-left">
-										Link
-									</th>
-									<th colspan="3" />
-								</tr>
+									<tr>
+										<th class="text-left">
+											Link
+										</th>
+										<th colspan="3" />
+									</tr>
 								</thead>
 								<tbody>
-								<tr v-for="(item, index) in fansub.links">
-									<td>
-										<v-text-field v-model="item.link" dense :clearable="true" @click:clear="clearLink(index)" class="d-inline-block" />
-										<span v-if="item.link">
-											<v-select v-model="item.type" :items="contactTypes" dense item-text="name" item-value="key" class="d-inline-block" />
-										</span>
-									</td>
-									<td style="padding-right: 0">
-										<v-icon v-if="index > 0" right @click="moveLinkUp(index)">mdi-chevron-up</v-icon>
-									</td>
-									<td style="padding-left: 0">
-										<v-icon v-if="index < fansub.links.length - 1" right @click="moveLinkDown(index)">mdi-chevron-down</v-icon>
-									</td>
-									<td>
-										<v-icon right @click="removeLink(index)">mdi-close</v-icon>
+									<tr v-for="(item, index) in fansub.links">
+										<td>
+											<v-text-field v-model="item.link" dense :clearable="true" class="d-inline-block" @click:clear="clearLink(index)" />
+											<span v-if="item.link">
+												<v-select v-model="item.type" :items="contactTypes" dense item-text="name" item-value="key" class="d-inline-block" />
+											</span>
+										</td>
+										<td style="padding-right: 0">
+											<v-icon v-if="index > 0" right @click="moveLinkUp(index)">mdi-chevron-up</v-icon>
+										</td>
+										<td style="padding-left: 0">
+											<v-icon v-if="index < fansub.links.length - 1" right @click="moveLinkDown(index)">mdi-chevron-down</v-icon>
+										</td>
+										<td>
+											<v-icon right @click="removeLink(index)">mdi-close</v-icon>
 
-									</td>
-								</tr>
-								<tr>
-									<td colspan="7">
-										<v-btn outlined rounded text small @click="newLink">
-											Adicionar link
-											<v-icon right>mdi-plus</v-icon>
-										</v-btn>
-									</td>
-								</tr>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="7">
+											<v-btn outlined rounded text small @click="newLink">
+												Adicionar link
+												<v-icon right>mdi-plus</v-icon>
+											</v-btn>
+										</td>
+									</tr>
 								</tbody>
 							</template>
 						</v-simple-table>
@@ -167,18 +167,17 @@ import { FansubInput, FansubLink, FansubMember } from '~/types/Fansub'
 
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
-import LinkIcon from '~/components/LinkIcon.vue'
 
 import queryFansubEdit from '~/apollo/queries/queryFansubEdit.graphql'
 import mutationSaveFansubRevision from '~/apollo/queries/saveFansubRevision.graphql'
 
 export default Vue.extend({
-	components: { Header, Footer, LinkIcon },
+	components: { Header, Footer },
 	apollo: {
 		fansub: {
 			query: queryFansubEdit,
 			prefetch: ({ route }) => ({ slug: route.params.slug }),
-			variables () {
+			variables() {
 				return { slug: this.$route.params.slug }
 			}
 		}
@@ -199,18 +198,16 @@ export default Vue.extend({
 		]
 	}),
 	methods: {
-		save (this: any) {
+		save(this: any) {
 			this.temp = true
 
-			let fansub: FansubInput
-			let links: FansubLink[] = []
-			let members: FansubMember[] = []
-
+			const links: FansubLink[] = []
 			this.fansub.links.forEach((link: FansubLink) => links.push({
 				link: link.link,
 				type: link.type
 			}))
 
+			const members: FansubMember[] = []
 			this.fansub.members.forEach((member: FansubMember) => members.push({
 				name: member.name,
 				role: member.role,
@@ -218,17 +215,17 @@ export default Vue.extend({
 				contactType: member.contactType
 			}))
 
-			fansub = {
+			const fansub = {
 				id: this.fansub.id,
 				name: this.fansub.name,
 				description: this.fansub.description,
-				links: links,
-				members: members
+				links,
+				members
 			}
 
-			let variables = {
+			const variables = {
 				revisionId: undefined,
-				fansub: fansub
+				fansub
 			}
 
 			this.$apollo.mutate({ mutation: mutationSaveFansubRevision, variables })
@@ -248,12 +245,12 @@ export default Vue.extend({
 			this.fansub.members.splice(index, 1)
 		},
 		moveMemberUp(this: any, index: number) {
-			let temp = this.fansub.members[index - 1]
+			const temp = this.fansub.members[index - 1]
 			Vue.set(this.fansub.members, index - 1, this.fansub.members[index])
 			Vue.set(this.fansub.members, index, temp)
 		},
 		moveMemberDown(this: any, index: number) {
-			let temp = this.fansub.members[index]
+			const temp = this.fansub.members[index]
 			Vue.set(this.fansub.members, index, this.fansub.members[index + 1])
 			Vue.set(this.fansub.members, index + 1, temp)
 		},
@@ -272,21 +269,21 @@ export default Vue.extend({
 			this.fansub.links.splice(index, 1)
 		},
 		moveLinkUp(this: any, index: number) {
-			let temp = this.fansub.links[index - 1]
+			const temp = this.fansub.links[index - 1]
 			Vue.set(this.fansub.links, index - 1, this.fansub.links[index])
 			Vue.set(this.fansub.links, index, temp)
 		},
 		moveLinkDown(this: any, index: number) {
-			let temp = this.fansub.links[index]
+			const temp = this.fansub.links[index]
 			Vue.set(this.fansub.links, index, this.fansub.links[index + 1])
 			Vue.set(this.fansub.links, index + 1, temp)
 		},
 		clearLink(this: any, index: number) {
 			this.fansub.links[index].link = ''
 			this.fansub.links[index].type = 'WEBSITE'
-		},
+		}
 	},
-	head (this: any) {
+	head(this: any) {
 		return {
 			title: (this.fansub ? ('Editar ' + this.fansub.name + ' • ') : '') + 'Tsuu'
 		}

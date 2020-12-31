@@ -18,6 +18,13 @@ beforeEach(() => {
 		vuetify: new Vuetify(),
 		stubs: {
 			NuxtLink: RouterLinkStub
+		},
+		mocks: {
+			$nuxt: {
+				$route: {
+					path: '/fansubs/a'
+				}
+			}
 		}
 	})
 })

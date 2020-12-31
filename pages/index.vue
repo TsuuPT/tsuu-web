@@ -63,7 +63,7 @@ export default Vue.extend({
 		expanded: false
 	}),
 	methods: {
-		expand () {
+		expand() {
 			this.expanded = !this.expanded
 		}
 	}

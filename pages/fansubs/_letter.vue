@@ -51,11 +51,11 @@ export default Vue.extend({
 		alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'],
 		selected: ''
 	}),
-	created () {
+	created() {
 		this.selected = this.getSelected()
 	},
 	methods: {
-		getSelected (): string {
+		getSelected(): string {
 			let val = decodeURIComponent(this.$route.params.letter?.toUpperCase())
 
 			if (!val || !this.alphabet.includes(val)) {

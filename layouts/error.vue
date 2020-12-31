@@ -30,7 +30,7 @@ export default Vue.extend({
 	props: ['error'],
 	layout: 'error',
 	computed: {
-		message () {
+		message() {
 			return this.error.statusCode === 404 ? 'Oops, não encontrámos esta página' : 'Oops, ocorreu um erro'
 		}
 	}

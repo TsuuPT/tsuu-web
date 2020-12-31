@@ -95,7 +95,7 @@ export default Vue.extend({
 		fansub: {
 			query: queryFansub,
 			prefetch: ({ route }) => ({ slug: route.params.slug }),
-			variables () {
+			variables() {
 				return { slug: this.$route.params.slug }
 			}
 		}
@@ -103,7 +103,7 @@ export default Vue.extend({
 	data: () => ({
 		tab: null
 	}),
-	head (this: any) {
+	head(this: any) {
 		return {
 			title: (this.fansub ? (this.fansub.name + ' • ') : '') + 'Tsuu'
 		}
@@ -112,43 +112,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-// default template - don't modify
-.fansub {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+.dashboard {
 
-	> main {
-		flex: 1 1 auto;
-		padding: 1em 2em;
-	}
-
-	.jobs {
-		.yellow {
-			background-color: #e5e600;
-		}
-		.green {
-			background-color: green;
-		}
-		.red {
-			background-color: #e60000;
-		}
-	}
 }
-
-.links {
-	margin-top: 1em;
-}
-
-// TODO: move to 'header tabs' component
-.v-tabs {
-	margin-top: 1em;
-
-	> .v-tabs-bar {
-		height: 2.5em;
-		background-color: transparent !important;
-	}
-}
-
-
 </style>

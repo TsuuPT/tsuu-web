@@ -61,6 +61,44 @@ export default {
 		}
 	},
 
+	vuetify: {
+		theme: {
+			options: {
+				customProperties: true  // https://vuetifyjs.com/en/features/theme/#custom-properties | TODO: add polyfills for IE11?
+			},
+			themes: {
+				light: {
+					primary: '#00b377',
+					background: {
+						base: '#fff',
+						darken1: '#f2f2f2',
+						darken2: '#e2e2e2',
+						darken3: '#c6c6c6',
+						darken4: '#ababab',
+						darken5: '#919191'
+					},
+					contrast: {
+						base: '#000'
+					}
+				},
+				dark: {
+					primary: '#00b377',
+					background: {
+						base: '#121212',
+						darken1: '#272727',
+						darken2: '#3c3c3c',
+						darken3: '#535353',
+						darken4: '#6c6c6c',
+						darken5: '#858585'
+					},
+					contrast: {
+						base: '#fff'
+					}
+				}
+			}
+		}
+	},
+
 	apollo: {
 		clientConfigs: {
 			default: {
