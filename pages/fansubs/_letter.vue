@@ -75,7 +75,7 @@ export default Vue.extend({
 .alphabet {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: center;
 
 	> * {
 		font-size: 1.5em;
@@ -83,14 +83,14 @@ export default Vue.extend({
 		width: 2em;
 		height: 2em;
 		line-height: 2em;
-
 		text-decoration: none;
-		color: #282828;
-		cursor: pointer;
+		border-radius: 50%;
 
 		&.active {
 			color: #000;
+			color: var(--v-contrast-base);
 			background-color: #f2f2f2;
+			background-color: var(--v-background-darken1);
 		}
 	}
 }

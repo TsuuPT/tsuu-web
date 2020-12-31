@@ -1,17 +1,12 @@
 <template>
 	<div class="content">
-		<Header title="Novidades">
-			<p>SLOT</p>
-		</Header>
+		<Header title="Tsuu" />
 
 		<main>
-			<h1 class="title">
-				tsuu-web
-			</h1>
-			<p>Lorem ipsum.</p>
+			<p>Olá</p>
 
 			<button @click="expand">
-				EXPAND
+				CLICK ME!
 			</button>
 			<div v-if="expanded">
 				<p>

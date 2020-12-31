@@ -31,7 +31,7 @@ export default Vue.extend({
 	layout: 'error',
 	computed: {
 		message() {
-			return this.error.statusCode === 404 ? 'Oops, não encontrámos esta página' : 'Oops, ocorreu um erro'
+			return this.error.statusCode === 404 ? 'Não encontrámos esta página' : 'A Organização está a tentar sabotar o site!'
 		}
 	}
 })

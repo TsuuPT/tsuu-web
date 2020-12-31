@@ -16,7 +16,7 @@
 		<slot />
 
 		<!-- Theme -->
-		<a href="#" class="action action-theme" title="Aparência" @click="() => $vuetify.theme.dark = !$vuetify.theme.dark">
+		<a href="#" class="action action-theme" title="Aparência" @click="toggleDarkMode">
 			<v-icon>{{ iconTheme }}</v-icon>
 		</a>
 
@@ -63,6 +63,10 @@ export default Vue.extend({
 		iconTheme: mdiWeatherNight
 	}),
 	methods: {
+		toggleDarkMode: function (this: any) {
+			this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+			localStorage.setItem('theme', this.$vuetify.theme.dark ? 'dark' : 'light')
+		},
 		toggleNotifications() {
 			this.notificationsOpened = !this.notificationsOpened
 		}
@@ -95,11 +99,13 @@ header {
 			border-radius: 50%;
 
 			&:hover {
-				background: #dddddd;
+				background-color: #e2e2e2;
+				background-color: var(--v-background-darken2);
 			}
 		}
 
-		&.search {
+		> .search {
+			margin-top: 4px;
 		}
 	}
 }
